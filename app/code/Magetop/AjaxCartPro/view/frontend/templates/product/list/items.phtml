@@ -1,0 +1,92 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+?>
+
+<?php
+ if ($exist = $block->getItems()->count()) {
+	$type = 'crosssell';
+	$class = $type;
+
+	$image = 'cart_cross_sell_products';
+	$title = __('More Choices:');
+	$items = $block->getItems();
+	$imageHelper = $this->helper('Magento\Catalog\Helper\Image');
+	$showWishlist = true;
+	$showCompare = true;
+	$showCart = false;
+	$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+	$description = false;
+	$canItemsAddToCart = false;
+}
+?>
+
+<?php if ($exist):?>    
+<div class="block cdz-<?php /* @escapeNotVerified */ echo $class; ?>">
+    <div class="block-title title">
+        <strong id="block-<?php /* @escapeNotVerified */ echo $class?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $title; ?></strong>
+    </div>
+    <div class="crossell-block block-content content" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class?>-heading">
+        <div class="products wrapper grid products-grid products-<?php /* @escapeNotVerified */ echo $type; ?>">
+            <ol class="products list items product-items">
+                <?php $iterator = 1; ?>
+                <?php foreach ($items as $_item): ?>
+                <?php $available = ''; ?>
+                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-item-info <?php /* @escapeNotVerified */ echo $available; ?>">
+                	<div class="cdz-hover-section">
+					<div class="cdz-product-top">
+                    <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+                    <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                        <img src="<?php echo $imageHelper->init($_item, 'product_page_image_large')->resize(150,150)->getUrl(); ?>" />
+                    </a>
+                    </div>
+                    <?php if ($showWishlist || $showCompare): ?>
+					<div class="product actions product-item-actions cdz-product-wishlist">              
+						<?php if ($showWishlist || $showCompare): ?>
+							<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+								<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+									<a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist show-tooltip" data-action="add-to-wishlist" title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+										<span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span>
+									</a>
+								<?php endif; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+                    <?php endif; ?>
+                            
+                    
+                    <div class="product details product-item-details">
+                        <strong class="product name product-item-name"><a class="product-item-link" title="<?php echo $block->escapeHtml($_item->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>">
+                            <?php echo $block->escapeHtml($_item->getName()) ?></a>
+                        </strong>
+
+                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
+
+                            <?php if ($templateType): ?>
+                                <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                            <?php endif; ?>
+
+                            <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                                <?php if (!$_item->getRequiredOptions()): ?>
+                                    <div class="field choice related">
+                                        <input type="checkbox" class="checkbox related" id="related-checkbox<?php /* @escapeNotVerified */ echo $_item->getId() ?>" name="related_products[]" value="<?php /* @escapeNotVerified */ echo $_item->getId() ?>" />
+                                        <label class="label" for="related-checkbox<?php /* @escapeNotVerified */ echo $_item->getId() ?>"><span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span></label>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>                            
+                        </div>
+                    </div>
+                    <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
+                <?php endforeach ?>
+            </ol>
+        </div>
+    </div>
+</div>
+<?php endif;?>

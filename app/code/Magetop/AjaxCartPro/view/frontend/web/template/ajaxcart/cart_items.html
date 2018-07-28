@@ -1,0 +1,47 @@
+<div class="item" data-role="product-item">
+	<div class="product" data-bind="attr: {'data-id': item.item_id}">
+		<span class="item-qty"><!-- ko text: item.qty --><!-- /ko --></span>
+		<img data-bind="attr:{src: item.product_image.src, alt: item.product_image.alt},
+			css:{ 'animated pulse': cartSidebar().trigger }" />
+		<span class="edit-icon">edit</span>
+	</div>
+    <div class="hover-sec">
+        <div class="details-qty qty">
+            <label class="label" data-bind="i18n: 'Qty', attr: {
+                   for: 'cart-item-'+item_id+'-qty'}"></label>
+            <input data-bind="attr: {
+                   id: 'cdz-cart-item-'+item_id+'-qty',
+                   'data-cart-item': item_id,
+                   'data-item-qty': qty
+                   }, value: qty"
+                   type="number"
+                   size="4"
+                   class="item-qty cart-item-qty"
+                   maxlength="12"/>
+            <button data-bind="attr: {
+                   id: 'cdz-update-cart-item-'+item_id,
+                   'data-cart-item': item_id,
+                   title: $t('Ok')
+                   }"
+                    class="update-cart-item"
+                    style="display: none">
+                <span data-bind="i18n: 'Ok'"></span>
+            </button>
+        </div>
+        <div class="product actions">
+            <!-- ko if: is_visible_in_site_visibility -->
+            <div class="primary">
+                <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit">
+                    <span data-bind="i18n: 'Edit'"></span>
+                </a>
+            </div>
+            <!-- /ko -->
+            <div class="secondary">
+                <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}"
+                   class="action delete">
+                    <span data-bind="i18n: 'Remove'"></span>
+                </a>
+            </div>
+        </div>
+	</div>
+</div>

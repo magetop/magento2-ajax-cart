@@ -1,0 +1,36 @@
+<div class="cart-footer" id="cart-footer" data-bind="scope: 'ajaxcart_content'" style="display:none;" data-block="footer_minicart">
+    <div class="cart-qty" id="footer-cart-trigger" data-bind="click: toggleFooterSidebar.bind(this)">
+        <span class="number"><!-- ko text: cartSidebar().summary_count --><!-- /ko --></span>
+        <?php echo __('item(s) in your cart') ?>
+    </div>
+    <div id="footer-mini-cart" class="footer-mini-cart" style="display:none;">
+    	<span class="cart-icon"></span>
+        <div class="cart-items" id="footer-cart-list">
+            <div class="cart-items-inner">
+            <!-- ko foreach: { data: cartSidebar().items, as: 'item' } -->
+                <!-- ko template: 'Magetop_AjaxCartPro/ajaxcart/cart_items' --><!-- /ko -->
+            <!-- /ko -->
+            </div>
+        </div>
+		<div class="footer-cart-additional">
+			<div class="footer-cart-summary">
+			<!-- ko template: 'Magetop_AjaxCartPro/ajaxcart/summary' --><!-- /ko -->
+			</div>
+			<!-- ko if: cartSidebar().possible_onepage_checkout -->
+			<div class="footer-cart-actions">
+				<div class="primary">
+					<button
+							id="footer-cart-btn-checkout"
+							type="button"
+							class="action primary checkout"
+							data-bind="attr: {title: $t('Go to Checkout')}">
+						<?php echo __('Go to Checkout') ?>
+					</button>
+					<div data-bind="html: cartSidebar().extra_actions"></div>
+				</div>
+			</div>
+			<!-- /ko -->
+			
+		</div>
+    </div>
+</div>

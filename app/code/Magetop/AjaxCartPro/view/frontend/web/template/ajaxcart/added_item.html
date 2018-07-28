@@ -1,0 +1,11 @@
+<div class="added-item">
+	<!-- ko if: addedItem().success -->
+    <div class="item-img">
+    	<img data-bind="attr: {'src': addedItem().img}" />
+    </div>
+    <div class="item-info">
+    	<strong class="product name product-item-name"><a class="product-item-link" data-bind="attr: {'href': addedItem().url}" ><!-- ko text: addedItem().name --><!-- /ko --></a></strong>
+        <div class="item-price" data-bind="html:  addedItem().price"></div>
+    </div>
+    <!-- /ko -->
+</div>

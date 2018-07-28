@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magetop. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="before.body.end">
+			<block class="Magetop\AjaxCartPro\Block\AjaxCart" name="ajax_cart_sidebar" as="ajax_cart_form" template="cart/ajax_sidebar.phtml" after="*" />
+		</referenceContainer>
+		<referenceContainer name="content">
+			<referenceBlock name="head.components">
+				<block class="Magento\Framework\View\Element\Js\Components" name="ajaxcart_head_components" template="Magetop_AjaxCartPro::js/components.phtml"/>
+			</referenceBlock>
+			<block class="Magetop\AjaxCartPro\Block\AjaxCart" name="ajax_cart_form" as="ajax_cart_form" template="cart/ajax_cart_form.phtml">
+				 <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+						<item name="types" xsi:type="array"/>
+						<item name="components" xsi:type="array">
+							<item name="ajaxcart_content" xsi:type="array">
+								<item name="component" xsi:type="string">Magetop_AjaxCartPro/js/ajaxcart</item>
+								<item name="config" xsi:type="array">
+									<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/content</item>
+								</item>
+								<item name="children" xsi:type="array">
+									<item name="added_item" xsi:type="array">
+										<item name="component" xsi:type="string">uiComponent</item>
+										<item name="config" xsi:type="array">
+											<item name="displayArea" xsi:type="string">addedItemContainer</item>
+											<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/added_item</item>
+										</item>
+										<item name="children" xsi:type="array">
+											<item name="component" xsi:type="string">uiComponent</item>
+											<item name="config" xsi:type="array">
+												<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/added_item</item>
+											</item>
+										</item>
+									</item>
+									<item name="cart_summary" xsi:type="array">
+										<item name="component" xsi:type="string">uiComponent</item>
+										<item name="config" xsi:type="array">
+											<item name="displayArea" xsi:type="string">cartSummaryContainer</item>
+											<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/cart_summary</item>
+										</item>
+										<item name="children" xsi:type="array">
+											<item name="component" xsi:type="string">uiComponent</item>
+											<item name="config" xsi:type="array">
+												<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/cart_summary</item>
+											</item>
+										</item>
+									</item>
+									<item name="crossell" xsi:type="array">
+										<item name="component" xsi:type="string">uiComponent</item>
+										<item name="config" xsi:type="array">
+											<item name="displayArea" xsi:type="string">crossellContainer</item>
+											<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/crossell</item>
+										</item>
+										<item name="children" xsi:type="array">
+											<item name="component" xsi:type="string">uiComponent</item>
+											<item name="config" xsi:type="array">
+												<item name="template" xsi:type="string">Magetop_AjaxCartPro/ajaxcart/crossell</item>
+											</item>
+										</item>
+									</item>
+								</item>
+							</item>
+						</item>
+					</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+	</body>
+</page>

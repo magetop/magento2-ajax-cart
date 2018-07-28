@@ -1,0 +1,25 @@
+<div class="result-container" data-bind="if: addedItem().success == true">
+        <div class="row top-section">
+        	<div class="added-item-sec cdz-sm-12">
+            	<!-- ko foreach: getRegion('addedItemContainer') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <div class="summary-sec cdz-sm-12">
+                <!-- ko foreach: getRegion('cartSummaryContainer') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->	            
+            </div>
+        </div>
+        <div class="row bottom-section">
+            <div class="cross-sell-sec cdz-sm-24">
+            	<!-- ko foreach: getRegion('crossellContainer') -->
+                	<!-- ko template: getTemplate() --><!-- /ko -->
+				<!-- /ko -->
+            </div>
+        </div>
+</div>
+<div class="loading-container" data-bind="if: addedItem().success == false">
+    <div class="ajax-loader">Loading</div>
+    <p><!-- ko i18n: 'This item is being added to your shopping cart' --><!-- /ko --> </p>
+</div>

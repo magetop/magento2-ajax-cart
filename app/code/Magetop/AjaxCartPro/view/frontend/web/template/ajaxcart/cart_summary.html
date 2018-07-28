@@ -1,0 +1,46 @@
+<strong class="summary title"><!-- ko i18n: 'Cart Summary' --><!-- /ko --></strong>
+<div class="summary-content">
+	<!-- ko if: ajaxcart().summary_count -->
+	<div class="row">
+    	<div class="cdz-sm-8"><!-- ko i18n: 'Total Item' --><!-- /ko --></div>
+        <div class="cdz-sm-16" data-bind="text: ajaxcart().summary_count"></div>
+    </div>
+	<!-- /ko -->
+    <!-- ko if: ajaxcart().subtotal -->
+	<div class="row">
+    	<div class="cdz-sm-8"><!-- ko i18n: 'Subtotal' --><!-- /ko --></div>
+        <div class="cdz-sm-16" data-bind="html: ajaxcart().subtotal"></div>
+    </div>
+	<!-- /ko -->
+	<!-- ko if: ajaxcart().subtotal_incl_tax -->
+    <div class="row">
+    	<div class="cdz-sm-8"><!-- ko i18n: 'Subtotal Incl Tax' --><!-- /ko --></div>
+        <div class="cdz-sm-16" data-bind="html: ajaxcart().subtotal_incl_tax"></div>
+    </div>
+	<!-- /ko -->
+	<!-- ko if: ajaxcart().subtotal_excl_tax -->
+	<div class="row">
+    	<div class="cdz-sm-8"> <!-- ko i18n: 'Subtotal Excl Tax' --><!-- /ko --></div>
+        <div class="cdz-sm-16" data-bind="html: ajaxcart().subtotal_excl_tax"></div>
+    </div>
+	<!-- /ko -->
+    <!-- ko if: ajaxcart().possible_onepage_checkout -->
+    <div class="actions">
+        <div class="primary">
+            <a
+                    type="button" data-role="closeBtn"
+                    class="close-modal"
+                    data-bind="attr: {title: $t('Continue Shopping'), href:'javascript:void(0)'}">
+                <!-- ko i18n: 'Continue Shopping' --><!-- /ko -->
+            </a>
+            <a
+                    type="button"
+                    class="go-checkout"
+                    data-bind="attr: {title: $t('Go to Checkout'), href:checkout.checkoutUrl}">
+                <!-- ko i18n: 'Go to Checkout' --><!-- /ko -->
+            </a>
+            <div data-bind="html: ajaxcart().extra_actions"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
