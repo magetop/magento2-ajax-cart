@@ -25,7 +25,7 @@ This extension is necessary for any ecommerce site to boost shopping experience.
 - Category page demo : https://livedemo.magetop.com/ajaxcart/men/tops-men.html
 - Product page demo : https://livedemo.magetop.com/ajaxcart/sinbad-fitness-tank.html
 
-## Support & Contact info
+## Support & contact info
 
 - Need help setting up or want to customize this extension to meet your business needs? 
 - Get instant support with our Live Chat
